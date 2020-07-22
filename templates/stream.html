@@ -1,0 +1,15 @@
+<html>
+    <div>
+        <h1 >Welcome</h1>
+        <img class="avatar" src="{{userinfo['picture']}}"/>
+    </div>
+      <head>
+        <title>Webcam Streaming video.</title>
+      </head>
+  <body>
+    <h1>Webcam Streaming video.</h1>
+    <img src="{{ url_for('video_feed') }}">
+    <a href="/home">Main Page</a>
+    <a href="/logout">Logout</a>
+  </body>
+</html>

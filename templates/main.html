@@ -1,0 +1,12 @@
+<div>
+    <div>
+        <h1 >Welcome</h1>
+        <img class="avatar" src="{{userinfo['picture']}}"/>
+    </div>
+    <h2>Welcome {{userinfo['name']}}</h2>
+    <form  method = "get">
+        <button type="submit" formaction="/stream">Live Stream Video Page</button>
+        <button type="submit" formaction="/static_video">Static Video Page</button>
+    </form>
+    <a href="/logout">Logout</a>
+</div>

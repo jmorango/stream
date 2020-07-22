@@ -1,0 +1,20 @@
+<div>
+    <h1 >Welcome</h1>
+    <img class="avatar" src="{{userinfo['picture']}}"/>
+</div>
+<!--
+<form action="/static_video" method="POST" enctype="multipart/form-data">
+    <label> Select a video to upload </label>
+    <div>
+        <input type="file" name="video_upload" id=""video_upload"">
+
+    </div>
+    <button type = "submit">Upload Video</button>
+
+</form> -->
+<video width="320" height="240" controls>
+    <source src={{ url_for('static', filename="1.mp4") }} type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+<a href="/home">Main Page</a>
+<a href="/logout">Logout</a>
