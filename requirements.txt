@@ -3,3 +3,6 @@ python-dotenv
 requests
 authlib>=0.14.1
 six
+opencv-contrib-python
+imutils
+numpy
