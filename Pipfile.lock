@@ -240,31 +240,6 @@
             "index": "pypi",
             "version": "==4.2.0.34"
         },
-        "opencv-contrib-python-headless": {
-            "hashes": [
-                "sha256:129b48c9933271b29abd6911cafb4f011a7cecfb233992e9e8db9b0cafd159cb",
-                "sha256:19ac7caf8c2c1db57e39833b149e7894d9e84473aca5e2de417cefca4a34ae01",
-                "sha256:1acdd607d4352404015563a6553941be8e5856f0f6920d7cf92c1521bd637e19",
-                "sha256:3278ed430f326520f8409a13cba38982ea7bc2588d32ea51d19099d3d1fad5f6",
-                "sha256:5147413ea9d51b8896e69fd2ae708065bb37291a2ec7350a45fbe0f8c7444977",
-                "sha256:5b4574a088a8f70f6522974af056189e81f70179a6cf07511396003b04effaa2",
-                "sha256:6dc1b8a66465210c56597caa08be9fe3b9d14c570bccfbf25c60c31e4ca10997",
-                "sha256:741f569b868cfce203ca1e480b07dad0083457ddcc5a4582abc6b0765d82a364",
-                "sha256:7683b992b9ce0e1517c3033f9ba98492ff839fa4af45b2d781b520b3faa18c12",
-                "sha256:933092831b70b60c51ce430c06059bb52faca97542e7873d6fc67775f8e0553b",
-                "sha256:9829cafd01fee6ef770c178bd9d231ba70c1ee701e05b94db6303fa674fe4a45",
-                "sha256:983813b271d2076e2a09ada9e460bf5c2273b1b618b724c98239951173b2461e",
-                "sha256:db531f11227a4eae019d01f65bd67fe813d9b299bbc8300327e14567a812a196",
-                "sha256:db7de8b529ffad758f588daddcdd57ceda7e67bfaa4451f7d0577f0b05b33274",
-                "sha256:ec1b1274c52db3094514f10380fa2dc7f9e79b4e604da719a17f8a263c95368f",
-                "sha256:ec6104352cf677c8105ab7dc7fac768475b4ea0cf4d453b308020f147c04783c",
-                "sha256:efbc645d7082a7430a68715e2d6d9d2ba0ec1a31c52fa11a978fa41637b1f32b",
-                "sha256:fcccffda825697491f2b31f06fa0bc8afd1149630b78cfc6ff8c245836c64edd",
-                "sha256:ffa659da78f7a14221e9d4ece3f14465033080b27ba972d8dab673a7424b49f4"
-            ],
-            "index": "pypi",
-            "version": "==4.3.0.36"
-        },
         "pycparser": {
             "hashes": [
                 "sha256:2d475327684562c3a96cc71adf7dc8c4f0565175cf86b6d7a404ff4c771f15f0",
