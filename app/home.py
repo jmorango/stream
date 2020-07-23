@@ -60,7 +60,7 @@ def requires_auth(f):
 
     return decorated
 
-vs = cv2.VideoCapture()
+vs = cv2.VideoCapture("rtsp://admin:emma2014@174.48.62.199:554/cam/realmonitor?channel=1&subtype=0")
 time.sleep(2.0)
 
 
