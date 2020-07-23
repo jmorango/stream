@@ -1,8 +1,8 @@
 flask
 python-dotenv
 requests
-authlib>=0.14.1
+authlib
 six
-opencv-contrib-python
+opencv-contrib-python-headless
 imutils
 numpy
