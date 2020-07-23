@@ -1,1 +1,1 @@
-web: python home.py
+web: gunicorn wsgi:home
