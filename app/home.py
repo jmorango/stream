@@ -144,7 +144,7 @@ def callback_handling():
 
 @app.route('/')
 def login():
-    return auth0.authorize_redirect(redirect_uri='http://localhost:3000/callback')
+    return auth0.authorize_redirect(redirect_uri='https://mighty-beach-20841.herokuapp.com/callback')
 
 
 app.config["VIDEO_UPLOADS"] = "C:\\Users\\Amed\\Desktop\\CNT4713\\uploads"
