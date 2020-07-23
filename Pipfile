@@ -15,6 +15,7 @@ opencv-contrib-python = "==4.2.0.34"
 imutils = "*"
 numpy = "*"
 opencv-contrib-python-headless = "*"
+cv2 = "*"
 
 [requires]
 python_version = "3.8"
