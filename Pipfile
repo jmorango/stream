@@ -11,6 +11,9 @@ requests = "*"
 six = "*"
 Flask = "*"
 Authlib = ">=0.14.1"
+opencv-contrib-python = "*"
+imutils = "*"
+numpy = "*"
 
 [requires]
 python_version = "3.8"
