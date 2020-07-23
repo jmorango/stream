@@ -214,7 +214,7 @@
             "index": "pypi",
             "version": "==1.19.1"
         },
-        "opencv-contrib-python": {
+        "opencv-contrib-python-headless": {
             "hashes": [
                 "sha256:03b2a42d432b4eec547a76d7f0cfa946c6f456bb38ec88abe94359a99cd2dba3",
                 "sha256:055b3458931355d390bed61f22fb269ba1e78aae4ef2819f7601ecc99a17a649",
