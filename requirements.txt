@@ -3,6 +3,6 @@ python-dotenv
 requests
 authlib
 six
-opencv-contrib-python-headless
+opencv-contrib-python==4.2.0.34
 imutils
 numpy
