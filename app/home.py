@@ -60,7 +60,7 @@ def requires_auth(f):
 
     return decorated
 
-vs = cv2.VideoCapture(0)
+vs = cv2.VideoCapture()
 time.sleep(2.0)
 
 
