@@ -60,7 +60,7 @@ def requires_auth(f):
 
     return decorated
 
-vs = cv2.VideoCapture("rtsp://admin:emma2014@174.48.62.199:554/cam/realmonitor?channel=1&subtype=0")
+vs = VideoStream(src=0).start()
 time.sleep(2.0)
 
 
@@ -179,4 +179,4 @@ t = threading.Thread(target=detect_motion, args=(32,))
 t.daemon = True
 t.start()
 
-vs.release()
+vs.stop()
