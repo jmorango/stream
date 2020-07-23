@@ -9,13 +9,11 @@ verify_ssl = true
 python-dotenv = "*"
 requests = "*"
 six = "*"
-Flask = "*"
-Authlib = ">=0.14.1"
 opencv-contrib-python = "==4.2.0.34"
 imutils = "*"
 numpy = "*"
-opencv-contrib-python-headless = "*"
-cv2 = "*"
+Flask = "*"
+Authlib = ">=0.14.1"
 
 [requires]
 python_version = "3.8"
