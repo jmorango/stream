@@ -170,7 +170,6 @@ def dashboard():
 
 @app.route('/logout')
 def logout():
-    vs.release()
     session.clear()
     params = {'returnTo': url_for('login', _external=True), 'client_id': AUTH0_CLIENT_ID}
     return redirect(auth0.api_base_url + '/v2/logout?' + urlencode(params))
@@ -180,4 +179,4 @@ t = threading.Thread(target=detect_motion, args=(32,))
 t.daemon = True
 t.start()
 
-vs.stop()
+vs.release()
