@@ -9,7 +9,7 @@ verify_ssl = true
 python-dotenv = "*"
 requests = "*"
 six = "*"
-opencv-contrib-python = "==4.2.0.34"
+opencv-contrib-python-headless = "==4.2.0.34"
 imutils = "*"
 numpy = "*"
 Flask = "*"
