@@ -60,7 +60,8 @@ def requires_auth(f):
 
     return decorated
 
-
+vs = cv2.VideoCapture(-1)
+time.sleep(2.0)
 
 
 @app.route('/home')
@@ -72,8 +73,7 @@ def home():
 @requires_auth
 def stream():
     #auth0.authorize_access_token()
-    global vs = cv2.VideoCapture(-1)
-    time.sleep(2.0)
+
     return render_template('stream.html', userinfo=session['profile'])
 def detect_motion(frameCount):
 	# grab global references to the video stream, output frame, and
