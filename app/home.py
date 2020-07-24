@@ -96,7 +96,7 @@ def detect_motion(frameCount):
 			"%A %d %B %Y %I:%M:%S%p"), (10, frame.shape[0] - 10),
 			cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 0, 255), 1)
 		if cv2.waitkey(20) & 0xFF == ord('q'):
-            break
+			break
 		with lock:
 			outputFrame = frame.copy()
 
