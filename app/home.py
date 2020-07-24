@@ -60,7 +60,7 @@ def requires_auth(f):
 
     return decorated
 
-vs = VideoStream(src=0).start()
+vs = cv2.VideoCapture("rtsp://admin:emma2014@174.48.62.199:554/cam/realmonitor?channel=1&subtype=0")
 time.sleep(2.0)
 
 
@@ -84,7 +84,7 @@ def detect_motion(frameCount):
 	while True:
 		# read the next frame from the video stream, resize it,
 		# convert the frame to grayscale, and blur it
-		frame = vs.read()
+		ret, frame = vs.read()
 		frame = imutils.resize(frame, width=400)
 		gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 		gray = cv2.GaussianBlur(gray, (7, 7), 0)
@@ -94,7 +94,8 @@ def detect_motion(frameCount):
 		cv2.putText(frame, timestamp.strftime(
 			"%A %d %B %Y %I:%M:%S%p"), (10, frame.shape[0] - 10),
 			cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 0, 255), 1)
-
+		if cv2.waitkey(20) & 0xFF == ord('q'):
+            break
 		with lock:
 			outputFrame = frame.copy()
 
