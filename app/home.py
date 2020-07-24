@@ -60,8 +60,7 @@ def requires_auth(f):
 
     return decorated
 
-vs = cv2.VideoCapture("rtsp://admin:emma2014@174.48.62.199:554/cam/realmonitor?channel=1&subtype=0")
-time.sleep(2.0)
+
 
 
 @app.route('/home')
@@ -75,53 +74,31 @@ def stream():
     #auth0.authorize_access_token()
 
     return render_template('stream.html', userinfo=session['profile'])
-def detect_motion(frameCount):
-	# grab global references to the video stream, output frame, and
-	# lock variables
-	global vs, outputFrame, lock
-
-	# loop over frames from the video stream
-	while True:
-		# read the next frame from the video stream, resize it,
-		# convert the frame to grayscale, and blur it
-		ret, frame = vs.read()
-		cv2.imshow('frame', frame)
-		#frame = imutils.resize(frame, width=400)
-		gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-		gray = cv2.GaussianBlur(gray, (7, 7), 0)
-
-		# grab the current timestamp and draw it on the frame
-		timestamp = datetime.datetime.now()
-		cv2.putText(frame, timestamp.strftime(
-			"%A %d %B %Y %I:%M:%S%p"), (10, frame.shape[0] - 10),
-			cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 0, 255), 1)
-		if cv2.waitkey(20) & 0xFF == ord('q'):
-			break
-		with lock:
-			outputFrame = frame.copy()
 
 def generate():
-	# grab global references to the output frame and lock variables
-	global outputFrame, lock
-
 	# loop over frames from the output stream
+	vs = cv2.VideoCapture("rtsp://admin:emma2014@174.48.62.199:554/cam/realmonitor?channel=1&subtype=0")
 	while True:
-		# wait until the lock is acquired
-		with lock:
-
-			if outputFrame is None:
-				continue
-
+		success, frame = vs.read()
+		if not success:
+			break
+		else:
+			frame = imutils.resize(frame, width=400)
+			gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+			gray = cv2.GaussianBlur(gray, (7, 7), 0)
+		# grab the current timestamp and draw it on the frame
+			timestamp = datetime.datetime.now()
+			cv2.putText(frame, timestamp.strftime(
+				"%A %d %B %Y %I:%M:%S%p"), (10, frame.shape[0] - 10),
+				cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 0, 255), 1)
 			(flag, encodedImage) = cv2.imencode(".jpg", outputFrame)
-
-			# ensure the frame was successfully encoded
-			if not flag:
-				continue
+			frame = encodedImage.tobytes()
 
 		# yield the output frame in the byte format
-		yield(b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' +
-			bytearray(encodedImage) + b'\r\n')
-
+			yield(b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' +
+				frame + b'\r\n')
+	vs.release()
+	cv2.destroyAllWindows()
 @app.route('/video_feed')
 @requires_auth
 def video_feed():
@@ -175,11 +152,3 @@ def logout():
     session.clear()
     params = {'returnTo': url_for('login', _external=True), 'client_id': AUTH0_CLIENT_ID}
     return redirect(auth0.api_base_url + '/v2/logout?' + urlencode(params))
-
-
-t = threading.Thread(target=detect_motion, args=(32,))
-t.daemon = True
-t.start()
-
-vs.release()
-cv2.destroyAllWindows()
