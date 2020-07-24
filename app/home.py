@@ -85,8 +85,8 @@ def detect_motion(frameCount):
 		# read the next frame from the video stream, resize it,
 		# convert the frame to grayscale, and blur it
 		ret, frame = vs.read()
-        cv2.imshow('frame', frame)
-		frame = imutils.resize(frame, width=400)
+		cv2.imshow('frame', frame)
+		#frame = imutils.resize(frame, width=400)
 		gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 		gray = cv2.GaussianBlur(gray, (7, 7), 0)
 
