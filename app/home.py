@@ -98,7 +98,6 @@ def generate():
 			yield(b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' +
 				frame + b'\r\n')
 	vs.release()
-	cv2.destroyAllWindows()
 @app.route('/video_feed')
 @requires_auth
 def video_feed():
