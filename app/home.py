@@ -91,7 +91,7 @@ def generate():
 			cv2.putText(frame, timestamp.strftime(
 				"%A %d %B %Y %I:%M:%S%p"), (10, frame.shape[0] - 10),
 				cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 0, 255), 1)
-			(flag, encodedImage) = cv2.imencode(".jpg", outputFrame)
+			(flag, encodedImage) = cv2.imencode(".jpg", frame)
 			frame = encodedImage.tobytes()
 
 		# yield the output frame in the byte format
