@@ -3,6 +3,7 @@ import json
 from os import environ as env
 from dotenv import load_dotenv, find_dotenv
 from imutils.video import VideoStream
+from flask_socketio import SocketIO
 from flask import Flask , Response , request, render_template, jsonify, redirect, session, url_for
 import threading
 import datetime
@@ -13,6 +14,7 @@ import os
 from authlib.integrations.flask_client import OAuth
 from six.moves.urllib.parse import urlencode
 from werkzeug.exceptions import HTTPException
+
 
 
 import constants
@@ -33,6 +35,7 @@ outputFrame = None
 lock = threading.Lock()
 
 app = Flask(__name__, static_folder = 'uploads')
+socketio = SocketIO(app)
 
 app.secret_key = constants.SECRET_KEY
 
@@ -119,6 +122,26 @@ def callback_handling():
         'picture': userinfo['picture']
     }
     return redirect('/home')
+
+@socketio.on('connect', namespace = '/web')
+def connect_web():
+	print('[INFO] Web client connected: {}'.format(request.sid))
+
+@socketio.on('disconnect', namespace = '/web')
+def disconnect_web():
+	print('[INFO] Web client disconnected: {}'.format(request.sid))
+
+@socketio.on('connect', namespace = '/cv')
+def connect_cv():
+	print('[INFO] CV client connected: {}'.format(request.sid))
+
+@socketio.on('disconnect', namespace = '/cv')
+def disconnect_cv():
+	print('[INFO] CV client disconnected: {}'.format(request.sid))
+
+@socketio.on('cv2server')
+def handle_cv_message(message):
+	socketio.emit('server2web', message, namespace='/web')
 
 
 @app.route('/')
