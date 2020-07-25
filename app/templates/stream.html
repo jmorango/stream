@@ -11,16 +11,66 @@
       <head>
         <title>Webcam Streaming video.</title>
       </head>
-  <body>
+	  <body class="tos-bg">
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="http://alwaysai.co/" target="_blank"><div class="alwaysai-logos-svg-horizontal-logo-red-black"></div>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <span class="navbar-nav mr-auto"></span>
+
+      <ul class="navbar-nav ">
+
+        <li class="nav-item">
+          <a class="nav-link" href="https://alwaysai.co/docs" target="_blank">Documentation</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://alwaysai.co/support" target="_blank">Support</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container" min-width= "1024px" width="100%">
+
+    <div class="dash-sub-title">
+      <h1>alwaysAI Video Streamer</h1>
+    </div>
+
+    <div class="card-deck">
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Output</h5>
+          <div class="card-scroller">
+            <p id="streamer-text"></p>
+          </div>
+        </div>
+      </div>
+
+      <div style="width: 70%">
+        <img id="streamer-image" src="">
+      </div>
+
+    </div>
+
+</div>
+</body>
+  <!--<body>
     <h1>Webcam Streaming video.</h1>
 		<div style="width: 70%">
         	<img id="streamer-image" src="">
       	</div>
 
-    <!--<img src="{{ url_for('video_feed') }}"> -->
+    <img src="{{ url_for('video_feed') }}">
     <a href="/home">Main Page</a>
     <a href="/logout">Logout</a>
-  </body>
+</body> -->
+<a href="/home">Main Page</a>
+<a href="/logout">Logout</a>
 </html>
 <script>
   document.addEventListener("DOMContentLoaded", function(event) {
