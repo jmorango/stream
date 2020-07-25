@@ -78,7 +78,7 @@ def stream():
 
     return render_template('stream.html', userinfo=session['profile'])
 
-def generate():
+def generate(frame):
 	# loop over frames from the output stream
 	# vs = cv2.VideoCapture(0)
 	# while True:
@@ -99,14 +99,14 @@ def generate():
 
 		# yield the output frame in the byte format
 	yield(b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' +
-		received_frame + b'\r\n')
+		frame + b'\r\n')
 	#vs.release()
 @app.route('/video_feed')
 @requires_auth
-def video_feed():
+def video_feed(message):
 	# return the response generated along with the specific media
 	# type (mime type)
-	return Response(generate(),
+	return Response(generate(message),
 		mimetype = "multipart/x-mixed-replace; boundary=frame")
 
 @app.route('/callback')
@@ -142,8 +142,7 @@ def disconnect_cv():
 
 @socketio.on('cv2server')
 def handle_cv_message(message):
-	global received_frame
-	received_frame = message
+	video_feed(message)
 	#socketio.emit('server2web', message, namespace='/web')
 
 @socketio.on_error()
