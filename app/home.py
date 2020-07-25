@@ -79,7 +79,6 @@ def stream():
     return render_template('stream.html', userinfo=session['profile'])
 
 def generate():
-	global received_frame
 	# loop over frames from the output stream
 	# vs = cv2.VideoCapture(0)
 	# while True:
