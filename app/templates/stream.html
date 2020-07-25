@@ -42,8 +42,9 @@
 
     // Update image and text data based on incoming data messages
     socket.on('server2web', (msg) => {
-      const image = document.getElementById('server2web');
-	  image.src = `msg:image/jpeg;base64,${msg}`
+      const imageplayer = document.getElementById('image');
+	  imageplayer.src = msg.image;
+
     });
   });
 </script>
