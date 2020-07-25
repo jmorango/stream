@@ -7,3 +7,4 @@ opencv-contrib-python-headless==4.2.0.34
 imutils
 numpy
 gunicorn
+flask_socketio

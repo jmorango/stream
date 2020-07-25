@@ -15,6 +15,7 @@ numpy = "*"
 Flask = "*"
 Authlib = ">=0.14.1"
 gunicorn = "*"
+Flask-SocketIO = "*"
 
 [requires]
 python_version = "3.8"
