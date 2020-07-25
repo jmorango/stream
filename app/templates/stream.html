@@ -1,4 +1,9 @@
 <html>
+	<head>
+		<script type="text/javascript"
+		 	src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js">
+ 	 	</script>
+	</head>
     <div>
         <h1 >Welcome</h1>
         <img class="avatar" src="{{userinfo['picture']}}"/>
@@ -8,8 +13,48 @@
       </head>
   <body>
     <h1>Webcam Streaming video.</h1>
-    <img src="{{ url_for('video_feed') }}">
+		<div style="width: 70%">
+        	<img id="streamer-image" src="">
+      	</div>
+
+    <!--<img src="{{ url_for('video_feed') }}"> -->
     <a href="/home">Main Page</a>
     <a href="/logout">Logout</a>
   </body>
 </html>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    const image_elem = document.getElementById("streamer-image");
+    const text_elem = document.getElementById("streamer-text");
+
+    var socket = io.connect('http://' + document.domain + ':' + location.port + '/web', {
+      reconnection: false
+    });
+
+    socket.on('connect', () => {
+      console.log('Connected');
+    });
+
+    socket.on('disconnect', () => {
+      console.log('Disconnected');
+    });
+
+    socket.on('connect_error', (error) => {
+      console.log('Connect error! ' + error);
+    });
+
+    socket.on('connect_timeout', (error) => {
+      console.log('Connect timeout! ' + error);
+    });
+
+    socket.on('error', (error) => {
+      console.log('Error! ' + error);
+    });
+
+    // Update image and text data based on incoming data messages
+    socket.on('server2web', (msg) => {
+      image_elem.src = msg.image;
+      text_elem.innerHTML = msg.text;
+    });
+  });
+</script>

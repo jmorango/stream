@@ -103,11 +103,12 @@ def generate(frame):
 	#vs.release()
 @app.route('/video_feed')
 @requires_auth
-def video_feed(message):
+def video_feed():
 	# return the response generated along with the specific media
 	# type (mime type)
-	return Response(generate(message),
-		mimetype = "multipart/x-mixed-replace; boundary=frame")
+	return render_template('stream.html', userinfo=session['profile'])
+	 # Response(generate(message),
+		# mimetype = "multipart/x-mixed-replace; boundary=frame")
 
 @app.route('/callback')
 def callback_handling():
@@ -142,7 +143,7 @@ def disconnect_cv():
 
 @socketio.on('cv2server')
 def handle_cv_message(message):
-	video_feed(message)
+	 socketio.emit('server2web', message, namespace='/web')
 	#socketio.emit('server2web', message, namespace='/web')
 
 @socketio.on_error()
