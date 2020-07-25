@@ -35,7 +35,7 @@ outputFrame = None
 lock = threading.Lock()
 
 app = Flask(__name__, static_folder = 'uploads')
-socketio = SocketIO(app)
+socketio = SocketIO(app,logger = True , engineio_logger=True)
 
 app.secret_key = constants.SECRET_KEY
 
@@ -143,6 +143,9 @@ def disconnect_cv():
 def handle_cv_message(message):
 	socketio.emit('server2web', message, namespace='/web')
 
+@socketio.on_error()
+def error_handler(e):
+	pass
 
 @app.route('/')
 def login():
