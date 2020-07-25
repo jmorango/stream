@@ -79,28 +79,29 @@ def stream():
     return render_template('stream.html', userinfo=session['profile'])
 
 def generate():
+	global received_frame
 	# loop over frames from the output stream
-	vs = cv2.VideoCapture("rtsp://admin:emma2014@174.48.62.199:554/cam/realmonitor?channel=1&subtype=0")
-	while True:
-		success, frame = vs.read()
-		if not success:
-			break
-		else:
-			frame = imutils.resize(frame, width=400)
-			gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-			gray = cv2.GaussianBlur(gray, (7, 7), 0)
-		# grab the current timestamp and draw it on the frame
-			timestamp = datetime.datetime.now()
-			cv2.putText(frame, timestamp.strftime(
-				"%A %d %B %Y %I:%M:%S%p"), (10, frame.shape[0] - 10),
-				cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 0, 255), 1)
-			(flag, encodedImage) = cv2.imencode(".jpg", frame)
-			frame = encodedImage.tobytes()
+	# vs = cv2.VideoCapture(0)
+	# while True:
+	# 	success, frame = vs.read()
+	# 	if not success:
+	# 		break
+	# 	else:
+	# 		frame = imutils.resize(frame, width=400)
+	# 		gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+	# 		gray = cv2.GaussianBlur(gray, (7, 7), 0)
+	# 	# grab the current timestamp and draw it on the frame
+	# 		timestamp = datetime.datetime.now()
+	# 		cv2.putText(frame, timestamp.strftime(
+	# 			"%A %d %B %Y %I:%M:%S%p"), (10, frame.shape[0] - 10),
+	# 			cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 0, 255), 1)
+	# 		(flag, encodedImage) = cv2.imencode(".jpg", frame)
+	# 		frame = encodedImage.tobytes()
 
 		# yield the output frame in the byte format
-			yield(b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' +
-				frame + b'\r\n')
-	vs.release()
+	yield(b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' +
+		received_frame + b'\r\n')
+	#vs.release()
 @app.route('/video_feed')
 @requires_auth
 def video_feed():
@@ -135,13 +136,16 @@ def disconnect_web():
 def connect_cv():
 	print('[INFO] CV client connected: {}'.format(request.sid))
 
+
 @socketio.on('disconnect', namespace = '/cv')
 def disconnect_cv():
 	print('[INFO] CV client disconnected: {}'.format(request.sid))
 
 @socketio.on('cv2server')
 def handle_cv_message(message):
-	socketio.emit('server2web', message, namespace='/web')
+	global received_frame
+	received_frame = message
+	#socketio.emit('server2web', message, namespace='/web')
 
 @socketio.on_error()
 def error_handler(e):
