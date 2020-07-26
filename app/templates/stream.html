@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<script type="text/javascript"
-		 	src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js">
+		 	src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js">
  	 	</script>
 	</head>
     <div>
@@ -16,9 +16,7 @@
 <img id="image">
 <script>
 
-    var socket = io.connect('http://mighty-beach-20841.herokuapp.com/:5001'+'/web', {
-      reconnection: false
-    });
+    var socket = io.connect(location.protocol+'//'+document.domain+':'+ location.port+'/web');
 
     socket.on('connect', () => {
       console.log('Connected');
