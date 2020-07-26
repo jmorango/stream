@@ -16,7 +16,7 @@
 <img id="image">
 <script>
 
-    var socket = io.connect(location.protocol+'//'+document.domain+':'+ location.port+'/web');
+
 
     socket.on('connect', () => {
       console.log('Connected');
@@ -49,6 +49,7 @@
   <!--<body>
     <h1>Webcam Streaming video.</h1>
 		<div style="width: 70%">
+		var socket = io.connect(location.protocol+'//'+document.domain+':'+ location.port+'/web');
         	<img id="streamer-image" src="">
       	</div>
 
