@@ -35,9 +35,8 @@ outputFrame = None
 lock = threading.Lock()
 
 app = Flask(__name__, static_folder = 'uploads')
-socketio = SocketIO(app,logger = True , engineio_logger=True)
-
 app.secret_key = constants.SECRET_KEY
+socketio = SocketIO(app,logger = True , engineio_logger=True)
 
 oauth = OAuth(app)
 

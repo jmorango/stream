@@ -1,9 +1,4 @@
 <html>
-	<head>
-		<script type="text/javascript"
-		 	src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js">
- 	 	</script>
-	</head>
     <div>
         <h1 >Welcome</h1>
         <img class="avatar" src="{{userinfo['picture']}}"/>
@@ -13,39 +8,7 @@
       </head>
 
 <body>
-<img id="image">
-<script>
-
-
-
-    socket.on('connect', () => {
-      console.log('Connected');
-    });
-
-    socket.on('disconnect', () => {
-      console.log('Disconnected');
-    });
-
-    socket.on('connect_error', (error) => {
-      console.log('Connect error! ' + error);
-    });
-
-    socket.on('connect_timeout', (error) => {
-      console.log('Connect timeout! ' + error);
-    });
-
-    socket.on('error', (error) => {
-      console.log('Error! ' + error);
-    });
-
-    // Update image and text data based on incoming data messages
-    socket.on('server2web', (msg) => {
-      const imageplayer = document.getElementById('image');
-	  imageplayer.src = msg.image;
-
-    });
-
-</script>
+	<video id="stream" width="640" height="480" src="http://174.48.62.199:80/stream" type="video/ogg; codecs=theora" autoplay="autoplay"/>
   <!--<body>
     <h1>Webcam Streaming video.</h1>
 		<div style="width: 70%">
