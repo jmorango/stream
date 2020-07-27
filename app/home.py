@@ -144,7 +144,7 @@ def disconnect_cv():
 @socketio.on('cv2server')
 def handle_cv_message(message):
 	 #socketio.emit('server2web', message, namespace='/web')
-	 print(message.format(request.sid))
+	 print("MESSAGE DATA " + str(message['data']))
 	#socketio.emit('server2web', message, namespace='/web')
 
 @socketio.on_error()
